@@ -23,17 +23,17 @@ typedef struct WorkerList {
 Worker* CreateWorker(int* choice)
 {
 	Worker* worker1 = (Worker*)malloc(1*sizeof(Worker));
-	printf("please enter your ID :");
+	printf("please enter your ID : ");
 	scanf("%llu", & worker1->ID);
-	printf("please enter your name");
+	printf("please enter your name : ");
 	char str[N];
 	scanf("%s", str);
 	worker1->name = (char*)malloc(strlen(str) + 1);
 	strcpy(worker1->name, str);
-	printf("please enter your salary");
+	printf("please enter your salary : ");
 	scanf("%lld", & worker1->salary);
-	printf("please enter the year you started work");
-	printf("would you like to enter the year in hebrew year or foreign year \n for hebrew year enter 1 for foreign year enter 0");
+	printf("please enter the year you started work :");
+	printf("would you like to enter the year in hebrew year or foreign year \n for hebrew year enter 1 for foreign year enter 0 : ");
 	scanf("%d", choice);
 	if (*choice == 1) 
 		scanf("%s", worker1->DateS);
@@ -44,12 +44,12 @@ Worker* CreateWorker(int* choice)
 }
 void PrintWorker(Worker* w,int s) {
 	printf("the ID is: %llu \n ", w->ID);
-	printf("The name :%s \n", w->name);
-	printf("The salary %llu \n", w->salary);
+	printf("The name : %s \n", w->name);
+	printf("The salary : %llu \n", w->salary);
 	if (s == 0)
-		printf("The year:%lu", w->DateL);
+		printf("The year  :%lu\n", w->DateL);
 	else
-		printf("The year :%s", w->DateS);
+		printf("The year : %s\n", w->DateS);
 }
 WorkerList* addWorker(WorkerList* head, Worker* w) {
 
