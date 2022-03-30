@@ -1,0 +1,87 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define S 6
+#define N 30
+typedef struct Worker
+{
+	unsigned long long ID;
+	char* name;
+	unsigned long long salary;
+	 union year
+	{
+		char DateS[S];
+		unsigned long DateL;
+	};
+}Worker;
+typedef struct WorkerList {
+	Worker* data;
+	struct WorkerList* next;
+}WorkerList;
+
+Worker* CreateWorker(int* choice)
+{
+	Worker* worker1 = (Worker*)malloc(1*sizeof(Worker));
+	printf("please enter your ID :");
+	scanf("%llu", & worker1->ID);
+	printf("please enter your name");
+	char str[N];
+	scanf("%s", str);
+	worker1->name = (char*)malloc(strlen(str) + 1);
+	strcpy(worker1->name, str);
+	printf("please enter your salary");
+	scanf("%lld", & worker1->salary);
+	printf("please enter the year you started work");
+	printf("would you like to enter the year in hebrew year or foreign year \n for hebrew year enter 1 for foreign year enter 0");
+	scanf("%d", choice);
+	if (*choice == 1) 
+		scanf("%s", worker1->DateS);
+	else
+		scanf("%lu", & worker1->DateL);
+
+	return worker1;
+}
+void PrintWorker(Worker* w,int s) {
+	printf("the ID is: %llu \n ", w->ID);
+	printf("The name :%s \n", w->name);
+	printf("The salary %llu \n", w->salary);
+	if (s == 0)
+		printf("The year:%lu", w->DateL);
+	else
+		printf("The year :%s", w->DateS);
+}
+WorkerList* addWorker(WorkerList* head, Worker* w) {
+
+}
+void update_worker(WorkerList* head, float percent) {
+	if (head != NULL) {
+		WorkerList* temp = head;
+		while (temp->next != NULL) {
+			temp->data->salary += temp->data->salary * percent;
+		}
+	}
+	else
+		return;
+}
+WorkerList* reverse(WorkerList* head) {
+
+}
+void freeWorkers(WorkerList* head) {
+	if (head != NULL) {
+		WorkerList* temp = head;
+		while (head->next != NULL) {
+			temp = head;
+			head = head->next;
+			free(temp->data->name);
+			free(temp->data);
+		}
+	}
+	else
+		return;
+}
+void main() {
+	int choice=0;
+	Worker* w1 = CreateWorker(&choice);
+	PrintWorker(w1, choice);
+}
